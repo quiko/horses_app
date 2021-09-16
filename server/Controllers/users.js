@@ -1,13 +1,13 @@
 const JWT = require('jsonwebtoken')
 const User = require('../Models/User')
-const JWTsecret = require('../config/keys')
+const jwtSecret = require('../config/keys')
 
 const signToken = (user) => {
   return JWT.sign(
     {
       sub: user._id,
     },
-    JWTsecret.secretString,
+    jwtSecret.secretString,
     { expiresIn: '1d' }
   )
 }
@@ -29,6 +29,11 @@ module.exports = {
     // respond with token
     res.status(200).json({ token })
   },
-  signIn: async (req, res, next) => {},
-  secret: async (req, res, next) => {},
+  signIn: async (req, res, next) => {
+    const token = signToken(req.user)
+    res.status(200).json({ token })
+  },
+  secret: async (req, res, next) => {
+    res.json({ secret: 'resource' })
+  },
 }
