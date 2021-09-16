@@ -1,15 +1,23 @@
-const express = require("express");
-const morgan = require("morgan");
-const usersRoutes = require("./Routes/users")
-const app = express();
+const express = require('express')
+const morgan = require('morgan')
+const mongoose = require('mongoose')
+const usersRoutes = require('./Routes/users')
+const keys = require('./config/keys')
+
+mongoose.connect(keys.mongodb.dbUrl, () => {
+  console.log('connected to db')
+})
+
+const app = express()
 
 // middlewares
-app.use(morgan('dev'));
-app.use(express.json());
+app.use(morgan('dev'))
+app.use(express.json())
 
 // routes
-app.use("/users", usersRoutes);
+app.use('/users', usersRoutes)
+
 // start the server
-const port = process.env.PORT || 3000;
-app.listen(port);
-console.log(`server listnning on ${port}`);
+const port = process.env.PORT || 3000
+app.listen(port)
+console.log(`server listnning on ${port}`)
