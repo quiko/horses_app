@@ -1,5 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 const mongoose = require('mongoose')
 const usersRoutes = require('./Routes/users')
 const keys = require('./config/keys')
@@ -11,6 +12,7 @@ mongoose.connect(keys.mongodb.dbUrl, () => {
 const app = express()
 
 // middlewares
+app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
 
