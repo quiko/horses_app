@@ -5,11 +5,18 @@ const LocalStrategy = require('passport-local')
 const jwtSecret = require('./config/keys')
 const User = require('./Models/User')
 
+const cookieExtractor = req => {
+  let token = null
+  if(req && req.cookies){
+    token = req.cookies['access_token']
+  }
+  return token
+}
 // JSON WEB TOKENS STRATEGY
 passport.use(
   new JwtStrategy(
     {
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: cookieExtractor,
       secretOrKey: jwtSecret.secretString,
     },
     async (jwt_payload, done) => {

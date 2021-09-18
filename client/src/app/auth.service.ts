@@ -11,9 +11,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   registerUser(user: object) {
-    return this.http.post(this.signupUrl, user)
+    return this.http.post(this.signupUrl, user, { withCredentials: true })
   }
   loginUser(user: object) {
-    return this.http.post(this.signinUrl, user)
+    return this.http.post(this.signinUrl, user, { withCredentials: true })
   }
 }

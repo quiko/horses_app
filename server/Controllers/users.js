@@ -26,12 +26,14 @@ module.exports = {
     await newUser.save()
     // generate token
     const token = signToken(newUser)
-    // respond with token
-    res.status(200).json({ token })
+    // send a cookie with JWT
+    res.cookie('access_token', token, { httpOnly : true})
+    res.status(200).json({ success: true })
   },
   signIn: async (req, res, next) => {
     const token = signToken(req.user)
-    res.status(200).json({ token })
+    res.cookie('access_token', token, { httpOnly : true})
+    res.status(200).json({ success: true })
   },
   secret: async (req, res, next) => {
     res.json({ secret: 'resource' })
