@@ -8,9 +8,9 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { HorsesComponent } from './horses/horses.component';
 import { HomeComponent } from './home/home.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
-import { TokenInterceptorService } from './token-interceptor.service'
+import { TokenInterceptorService } from './services/token-interceptor.service'
 
 
 @NgModule({
