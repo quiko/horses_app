@@ -9,6 +9,9 @@ The app imitates an [MVC Architecture](https://en.wikipedia.org/wiki/Model%E2%80
 For now, it showcases mainly an authenticated api using
 [JWT](https://jwt.io/) and [passportjs](http://www.passportjs.org/) middleware.
 
+## Diagram
+![alt text](https://github.com/quiko/horses_app/blob/main/Untitled%20Diagram.drawio.png)
+
 ## Setup to run locally
 You will need either MongoDB runing via Docker or locally, or to setup a project on
 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and copy the URI into server/config/keys : dbUrl.
