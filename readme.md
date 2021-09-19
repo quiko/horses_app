@@ -15,3 +15,12 @@ For now, it showcases mainly an authenticated api using
 ## Setup to run locally
 You will need either MongoDB runing via Docker or locally, or to setup a project on
 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and copy the URI into server/config/keys : dbUrl.
+then run the following commands :
+```bash
+cd client
+ng serve
+```
+```bash
+cd server
+npm run start-dev
+```
