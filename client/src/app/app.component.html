@@ -26,13 +26,13 @@
       </li>
     </ul>
     <ul class="navbar-nav">
-      <a class="nav-link" routerLink="/signin" routerLinkActive="active"
+      <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/signin" routerLinkActive="active"
         >Sign in</a
       >
-      <a class="nav-link" routerLink="/signup" routerLinkActive="active"
+      <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/signup" routerLinkActive="active"
         >Sign up</a
       >
-      <a class="nav-link" style="cursor: pointer">Logout</a>
+      <a class="nav-link" style="cursor: pointer" *ngIf="authService.loggedIn()" (click)="authService.logout()">Logout</a>
     </ul>
   </div>
 </nav>
