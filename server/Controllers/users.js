@@ -1,6 +1,6 @@
-const JWT = require('jsonwebtoken')
-const User = require('../Models/User')
-const jwtSecret = require('../config/keys')
+const JWT = require("jsonwebtoken")
+const User = require("../Models/User")
+const jwtSecret = require("../config/keys")
 
 const signToken = (user) => {
   return JWT.sign(
@@ -8,9 +8,9 @@ const signToken = (user) => {
       sub: user._id,
     },
     jwtSecret.secretString,
-    { expiresIn: '1d' }
-  )
-}
+    { expiresIn: "1d" }
+  );
+};
 
 module.exports = {
   signUp: async (req, res, next) => {
@@ -19,7 +19,7 @@ module.exports = {
     // check if there is already a user with the same email
     const existantUser = await User.findOne({ email })
     if (existantUser) {
-      return res.status(409).json({ error: 'email already in use' })
+      return res.status(409).json({ error: "email already in use" })
     }
     // if not, create a new user
     const newUser = new User({ email, password })
@@ -27,15 +27,15 @@ module.exports = {
     // generate token
     const token = signToken(newUser)
     // send a cookie with JWT
-    res.cookie('access_token', token, { httpOnly : true})
-    res.status(200).json({ success: true })
+    res.cookie("access_token", token, { httpOnly: true })
+    res.status(200).json({ token })
   },
   signIn: async (req, res, next) => {
     const token = signToken(req.user)
-    res.cookie('access_token', token, { httpOnly : true})
-    res.status(200).json({ success: true })
+    res.cookie("access_token", token, { httpOnly: true })
+    res.status(200).json({ token })
   },
   secret: async (req, res, next) => {
-    res.json({ secret: 'resource' })
+    res.json({ secret: "resource" })
   },
 }

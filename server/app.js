@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const cookieParser = require("cookie-parser")
 const usersRoutes = require('./Routes/users')
 const keys = require('./config/keys')
 
@@ -12,6 +13,7 @@ mongoose.connect(keys.mongodb.dbUrl, () => {
 const app = express()
 
 // middlewares
+app.use(cookieParser())
 app.use(cors({
   origin: 'http://localhost:4200',
   credentials: true

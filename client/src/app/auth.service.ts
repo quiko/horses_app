@@ -16,4 +16,10 @@ export class AuthService {
   loginUser(user: object) {
     return this.http.post(this.signinUrl, user, { withCredentials: true })
   }
+  loggedIn(){
+    return !!localStorage.getItem('access_token')
+  }
+  getToken(){
+    return localStorage.getItem('access_token')
+  }
 }
